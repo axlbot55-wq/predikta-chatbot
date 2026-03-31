@@ -1,6 +1,7 @@
 import React from "react";
 
 import ChatWidget from "./ChatWidget";
+import "./chat.css";
 
 export default function App() {
   const isLocal =
@@ -8,11 +9,17 @@ export default function App() {
   const apiBase = process.env.REACT_APP_API_BASE || (isLocal ? "http://127.0.0.1:8000" : "");
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", paddingTop: "40px" }}>
-      <div style={{ width: 480 }}>
-        <h2>Predikta Chat</h2>
-        <ChatWidget apiBase={apiBase} />
-      </div>
-    </div>
+    <main className="app-shell">
+      <section className="hero-copy">
+        <p className="eyebrow">Predikta conversational guide</p>
+        <h1>Talk through audiences, reactions, and messaging without the robotic chatbot feel.</h1>
+        <p className="hero-text">
+          This version is designed to feel more like a sharp human operator: warm, concise, and
+          genuinely useful when someone is thinking through people, sentiment, positioning, or what
+          to do next.
+        </p>
+      </section>
+      <ChatWidget apiBase={apiBase} />
+    </main>
   );
 }

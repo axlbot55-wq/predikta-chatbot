@@ -1,5 +1,5 @@
 import { json } from "../_lib/chatbot";
-import { createChatJsonResponse } from "../_lib/openai";
+import { createChatStreamResponse } from "../_lib/openai";
 
 export function onRequestOptions() {
   return json({}, 204);
@@ -17,8 +17,8 @@ export async function onRequestPost(context) {
   const previousResponseId = payload.previous_response_id || payload.previousResponseId || null;
 
   if (!message) {
-    return json({ detail: "text is required" }, 400);
+    return json({ detail: "message is required" }, 400);
   }
 
-  return createChatJsonResponse(context.env, message, previousResponseId);
+  return createChatStreamResponse(context.env, message, previousResponseId);
 }
