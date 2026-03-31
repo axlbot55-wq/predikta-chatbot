@@ -2,24 +2,13 @@
 
 ## Short Answer
 
-Yes, we can publish the frontend on Cloudflare Pages.
+Yes. The current Cloudflare path uses Cloudflare Pages Functions inside `frontend/functions`.
 
-The current backend is FastAPI, so it does not deploy to Cloudflare Pages as-is. For a full online chatbot, use one of these paths:
+That means:
 
-- Fastest path: deploy the frontend to Cloudflare Pages and host the FastAPI API on another service
-- Cloudflare-only path: rewrite the backend into Cloudflare Workers or Pages Functions
-
-## Fastest Path
-
-1. Deploy `frontend/` to Cloudflare Pages
-2. Deploy the FastAPI backend somewhere that supports Python servers
-3. Set `REACT_APP_API_BASE` in Cloudflare Pages to the public backend URL
-
-Example:
-
-- Frontend: `https://chat.predikta.com`
-- Backend: `https://predikta-api.example.com`
-- Pages env var: `REACT_APP_API_BASE=https://predikta-api.example.com`
+- the static React app is served by Cloudflare Pages
+- the chatbot API is served by the same Pages project at `/chat`
+- the OpenClaw webhook can be served by the same Pages project at `/webhook/openclaw`
 
 ## Cloudflare Pages Settings
 
@@ -29,26 +18,28 @@ Use these values if you connect the repo to Pages:
 - Build command: `npm run build`
 - Build output directory: `build`
 
+## Functions Included
+
+These routes now live in Cloudflare Pages Functions:
+
+- `POST /chat`
+- `GET /health`
+- `POST /webhook/openclaw`
+
 ## Why `_redirects` Exists
 
 This frontend is a single-page app. The `_redirects` file ensures client-side routes fall back to `index.html`.
 
 ## Current Status
 
-The frontend builds successfully for production.
+The frontend can now be deployed together with the chatbot API on Cloudflare Pages.
 
-The backend runs locally and serves `/chat/`, but it still needs a public host before the Pages site can use it online.
+The current Cloudflare chatbot logic uses the seeded Predikta knowledge base. If you want richer answers later, the next step is to replace the seeded data with full ingestion from the Google Docs and Sheets sources.
 
-## Recommended Next Move
+## Environment Variables
 
-If you want the quickest live result:
+If you want the OpenClaw webhook to send replies back through the vendor API, set these in Cloudflare Pages:
 
-1. Put the frontend on Cloudflare Pages now
-2. Put the FastAPI backend on a Python host
-3. Point Pages to the backend with `REACT_APP_API_BASE`
-
-If you want everything on Cloudflare:
-
-1. Keep the frontend on Pages
-2. Rebuild `/chat/` and the OpenClaw webhook as Cloudflare Workers
-3. Move secrets to Cloudflare environment variables
+- `OPENCLAW_API_URL`
+- `OPENCLAW_API_KEY`
+- `OPENCLAW_SECRET`
