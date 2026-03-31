@@ -1,0 +1,9 @@
+[
+  {
+    "path": "backend/app/main.py",
+    "tech": "python/fastapi",
+    "max_tokens": 400,
+    "overwrite": true,
+    "prompt": "See README"
+  }
+]

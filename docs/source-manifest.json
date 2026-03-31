@@ -1,0 +1,53 @@
+[
+  {
+    "id": "predikta_non_technical_description",
+    "name": "Predikta Description (Non-technical)",
+    "source_type": "google_doc",
+    "source_url": "https://docs.google.com/document/d/1J4yRUOiJs3JhUFKsJvGk7pvg7Dkvgkafti3JVfYpijE/",
+    "audience": "external",
+    "visibility": "public",
+    "topic": "overview"
+  },
+  {
+    "id": "predikta_internal_faq",
+    "name": "Predikta FAQ - Can/Can't Do (Internal)",
+    "source_type": "google_doc",
+    "source_url": "https://docs.google.com/document/d/1fwFmbKjc5iCtCmN2hr7B9NRoV_jVMwvKSx_syx3SaqY/",
+    "audience": "internal",
+    "visibility": "internal",
+    "topic": "capabilities_and_limits"
+  },
+  {
+    "id": "predikta_external_faq",
+    "name": "FAQs for Predikta",
+    "source_type": "google_doc",
+    "source_url": "https://docs.google.com/document/d/1qMucyjde-gqCjeFX37PHLMn1QpEEXdq4QSgkcdE0jsk",
+    "audience": "external",
+    "visibility": "public",
+    "topic": "faq"
+  },
+  {
+    "id": "predikta_bs_dictionary",
+    "name": "BS Dictionary",
+    "source_type": "google_sheet",
+    "source_url": "https://docs.google.com/spreadsheets/d/1pNc4LxMD91gYz9h0AV7kh0N1gr3d1RQRIvVBe9SMdLg/edit?gid=0#gid=0",
+    "sheet_name": "Sheet1",
+    "audience": "internal",
+    "visibility": "internal",
+    "topic": "terminology"
+  },
+  {
+    "id": "predikta_use_cases",
+    "name": "[PREDIKTA] Use Cases Sheet",
+    "source_type": "google_sheet",
+    "source_url": "https://docs.google.com/spreadsheets/d/1V-SCi7Q3cyN5ByxhYBARaVL2jsAlYuM-Stm8HZ-zAOo/",
+    "sheet_names": [
+      "Current Supported Use Cases",
+      "General Scenario Use Cases",
+      "Specific Marketing Cases"
+    ],
+    "audience": "external",
+    "visibility": "public",
+    "topic": "use_cases"
+  }
+]

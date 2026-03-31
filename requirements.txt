@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+openai
+pinecone-client
+redis
+python-dotenv
+requests
+pydantic
+pytest
