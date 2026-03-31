@@ -84,7 +84,9 @@ function isHandoffQuestion(text) {
 
 export function buildAnswer(userText, hits, channel = "web") {
   if (!hits.length) {
-    return "I can help with Predikta's positioning, use cases, and campaign-testing capabilities. Could you rephrase the question or ask about overview, use cases, or audience simulation?";
+    return channel === "whatsapp"
+      ? "I can help with Predikta's positioning, use cases, and campaign-testing capabilities. Could you rephrase that or ask about overview, use cases, or audience simulation?"
+      : "I can help with Predikta's positioning, use cases, and campaign-testing capabilities. Could you rephrase the question or ask about overview, use cases, or audience simulation?";
   }
 
   const snippets = [];
@@ -97,7 +99,7 @@ export function buildAnswer(userText, hits, channel = "web") {
     }
     const firstSentence = splitSentences(hit.text)[0];
     if (firstSentence) {
-      snippets.push(`${firstSentence} [${sourceId}]`);
+      snippets.push(channel === "whatsapp" ? firstSentence : `${firstSentence} [${sourceId}]`);
       seen.add(sourceId);
     }
   }
@@ -114,6 +116,79 @@ export function buildAnswer(userText, hits, channel = "web") {
         : " For pricing, legal, or a tailored pilot, the best next step is a human follow-up with the Predikta team.";
   }
   return answer;
+}
+
+function pickFirstString(values) {
+  for (const value of values) {
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+  return "";
+}
+
+export function normalizeOpenClawMessage(payload) {
+  const firstMessage = Array.isArray(payload.messages) ? payload.messages[0] || {} : {};
+  const firstEntry = Array.isArray(payload.entry) ? payload.entry[0] || {} : {};
+  const firstChange = Array.isArray(firstEntry.changes) ? firstEntry.changes[0] || {} : {};
+  const changeValue = firstChange.value || {};
+
+  const phone = pickFirstString([
+    payload.from,
+    payload.from_number,
+    payload.sender,
+    payload.phone,
+    payload.contact?.phone,
+    payload.contact?.wa_id,
+    firstMessage.from,
+    firstMessage.from_number,
+    changeValue.from,
+    changeValue.from_number,
+    changeValue.contacts?.[0]?.wa_id,
+    changeValue.contacts?.[0]?.phone,
+  ]);
+
+  const text = pickFirstString([
+    payload.body,
+    payload.text,
+    payload.message,
+    payload.content,
+    firstMessage.body,
+    firstMessage.text?.body,
+    firstMessage.message?.text,
+    changeValue.body,
+    changeValue.text,
+    changeValue.messages?.[0]?.text?.body,
+    changeValue.messages?.[0]?.body,
+  ]);
+
+  const eventType = pickFirstString([
+    payload.type,
+    payload.event,
+    payload.message_type,
+    firstMessage.type,
+    changeValue.field,
+    changeValue.messages?.[0]?.type,
+  ]);
+
+  return { phone, text, eventType };
+}
+
+export function buildOpenClawReplyPayload(phone, reply, env) {
+  const mode = env.OPENCLAW_REPLY_FORMAT || "simple";
+
+  if (mode === "whatsapp_text") {
+    return {
+      to: phone,
+      type: "text",
+      text: { body: reply },
+    };
+  }
+
+  return {
+    to: phone,
+    message: reply,
+  };
 }
 
 function constantTimeEquals(left, right) {

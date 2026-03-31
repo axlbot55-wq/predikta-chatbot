@@ -43,3 +43,6 @@ If you want the OpenClaw webhook to send replies back through the vendor API, se
 - `OPENCLAW_API_URL`
 - `OPENCLAW_API_KEY`
 - `OPENCLAW_SECRET`
+- `OPENCLAW_REPLY_FORMAT` (optional)
+
+For the WhatsApp/OpenClaw setup details, see `docs/openclaw-whatsapp.md`.
