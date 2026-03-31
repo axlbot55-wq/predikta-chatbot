@@ -99,7 +99,7 @@ export function buildAnswer(userText, hits, channel = "web") {
     }
     const firstSentence = splitSentences(hit.text)[0];
     if (firstSentence) {
-      snippets.push(channel === "whatsapp" ? firstSentence : `${firstSentence} [${sourceId}]`);
+      snippets.push(firstSentence);
       seen.add(sourceId);
     }
   }

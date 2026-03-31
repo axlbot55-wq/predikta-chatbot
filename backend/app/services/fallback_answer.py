@@ -42,7 +42,7 @@ def build_fallback_answer(user_text: str, hits: List[Dict], channel: str = "web"
         if not sentences:
             continue
         if source_id not in seen_sources:
-            snippets.append(f"{sentences[0]} [{source_id}]")
+            snippets.append(sentences[0])
             seen_sources.add(source_id)
 
     if not snippets:
