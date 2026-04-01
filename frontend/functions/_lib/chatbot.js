@@ -66,6 +66,32 @@ function splitSentences(text) {
     .filter(Boolean);
 }
 
+function cleanSnippet(text) {
+  const cleaned = text
+    .replace(
+      /^(the\s+)?(public|external|internal)\s+faq\s+(argues|says|notes|frames|presents)\s+/i,
+      ""
+    )
+    .replace(/^(the\s+)?investor\s+(site|page|material|narrative)\s+(argues|says|reports|describes|separates)\s+/i, "")
+    .replace(/^(the\s+)?investor\s+(site|page|material|narrative)\s+(says|reports|describes)\s+/i, "")
+    .replace(/^(according to the investor page,?|according to the investor site,?)\s*/i, "")
+    .replace(/^(the\s+use case sheet\s+(includes|frames|suggests)\s+)/i, "")
+    .replace(/^(one major use case is\s+)/i, "")
+    .replace(/^(a recurring use case is\s+)/i, "")
+    .replace(/^(the\s+bs dictionary\s+defines\s+)/i, "")
+    .replace(/^predikta\s+is\s+presented\s+to\s+investors\s+as\s+/i, "Predikta is ")
+    .replace(/^(predikta'?s\s+investor\s+narrative\s+says\s+)/i, "Predikta ")
+    .replace(/^(the\s+team story on the investor page\s+)/i, "The team ")
+    .replace(/^(the\s+investor case for defensibility centers on\s+)/i, "Predikta's defensibility centers on ")
+    .replace(/^(the\s+raise is framed as\s+)/i, "The current raise is ")
+    .replace(/^(the\s+2026 roadmap on the investor page\s+focuses on\s+)/i, "The 2026 roadmap focuses on ")
+    .replace(/^(the\s+investor page is clear that\s+)/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return cleaned ? cleaned.charAt(0).toUpperCase() + cleaned.slice(1) : "";
+}
+
 function allowedVisibilities(channel) {
   if (channel === "web" || channel === "whatsapp" || channel === "whatsapp_openclaw") {
     return new Set(["public", "external"]);
@@ -87,7 +113,12 @@ export function semanticSearch(text, topK = 6, channel = "web") {
 
     const bodyTokens = tokenize(item.text);
     const overlap = [...queryTokens].filter((token) => bodyTokens.has(token)).length;
-    if (overlap === 0) {
+    const hintedMatch =
+      hints.has(item.metadata.topic) ||
+      (hints.has("investor_validation") && item.metadata.topic === "methodology") ||
+      (hints.has("comparison") && item.metadata.topic === "faq");
+
+    if (overlap === 0 && !hintedMatch) {
       continue;
     }
 
@@ -153,7 +184,7 @@ export function buildAnswer(userText, hits, channel = "web") {
   const seen = new Set();
 
   for (const hit of hits.slice(0, 3)) {
-    const firstSentence = splitSentences(hit.text)[0];
+    const firstSentence = cleanSnippet(splitSentences(hit.text)[0] || "");
     if (firstSentence) {
       const normalized = firstSentence.toLowerCase();
       if (seen.has(normalized)) {

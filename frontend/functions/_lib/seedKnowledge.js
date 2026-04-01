@@ -111,7 +111,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_dictionary_traits",
-    text: "The BS Dictionary defines personality-related constructs used by Predikta, including traits like extraversion, conscientiousness, agreeableness, emotionality, and openness to experience.",
+    text: "Predikta uses personality-related constructs such as extraversion, conscientiousness, agreeableness, emotionality, and openness to experience.",
     metadata: {
       source_id: "predikta_bs_dictionary",
       source: "predikta_bs_dictionary",
@@ -122,7 +122,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_external_faq_security",
-    text: "The external FAQ frames security around logical client data isolation, encryption at rest and in transit, and AWS-hosted infrastructure. Highly specific security, legal, or privacy commitments should still be handled by the team.",
+    text: "Predikta frames security around logical client data isolation, encryption at rest and in transit, and AWS-hosted infrastructure. Highly specific security, legal, or privacy commitments should still be handled by the team.",
     metadata: {
       source_id: "predikta_external_faq",
       source: "predikta_external_faq",
@@ -155,7 +155,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_external_faq_accuracy",
-    text: "The external FAQ presents Predikta as maintaining 95 percent trait alignment with real humans and 88 percent accuracy in consumer sentiment simulation.",
+    text: "Predikta is presented as maintaining 95 percent trait alignment with real humans and 88 percent accuracy in consumer sentiment simulation.",
     metadata: {
       source_id: "predikta_external_faq",
       source: "predikta_external_faq",
@@ -199,7 +199,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_external_faq_visual_limit",
-    text: "The external FAQ says Predikta currently supports scripts, copy sheets, slogans, and broad concepts. It does not clearly claim full multimodal image or video understanding in the public material.",
+    text: "Predikta currently supports scripts, copy sheets, slogans, and broad concepts. It does not clearly claim full multimodal image or video understanding in the public material.",
     metadata: {
       source_id: "predikta_external_faq",
       source: "predikta_external_faq",
@@ -232,7 +232,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_external_faq_dialects",
-    text: "The external FAQ notes that the underlying survey was translated into five major dialects including Tagalog, Cebuano, Ilocano, Bicolano, and Ilonggo.",
+    text: "The underlying survey was translated into five major dialects including Tagalog, Cebuano, Ilocano, Bicolano, and Ilonggo.",
     metadata: {
       source_id: "predikta_external_faq",
       source: "predikta_external_faq",
@@ -254,7 +254,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_external_faq_chatgpt_difference",
-    text: "The public FAQ argues that ChatGPT guesses a persona from internet text, while Predikta is positioned as a large behavioral model grounded in proprietary psychographic profiles of Filipino consumers.",
+    text: "ChatGPT guesses a persona from internet text, while Predikta is positioned as a behavioral model grounded in proprietary psychographic profiles of Filipino consumers.",
     metadata: {
       source_id: "predikta_external_faq",
       source: "predikta_external_faq",
@@ -320,7 +320,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_use_cases_objective_simulation",
-    text: "One major use case is replacing subjective internal debate with objective simulation, giving teams data-backed sentiment and behavioral response signals for each creative version.",
+    text: "Predikta can replace subjective internal debate with objective simulation, giving teams data-backed sentiment and behavioral response signals for each creative version.",
     metadata: {
       source_id: "predikta_use_cases",
       source: "predikta_use_cases",
@@ -342,7 +342,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_use_cases_demographic_trap",
-    text: "A recurring use case is escaping the demographic trap. Predikta is meant to go beyond age, gender, and location by simulating responses through values, beliefs, and motivations.",
+    text: "Predikta helps teams escape the demographic trap by going beyond age, gender, and location to simulate responses through values, beliefs, and motivations.",
     metadata: {
       source_id: "predikta_use_cases",
       source: "predikta_use_cases",
@@ -353,7 +353,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_use_cases_crisis_comms",
-    text: "The use case sheet includes crisis communications as a scenario, where teams can test multiple versions of a PR statement to see which language is more likely to reduce tension rather than worsen outrage.",
+    text: "Predikta can also be used for crisis communications, helping teams test multiple versions of a PR statement to see which language is more likely to reduce tension rather than worsen outrage.",
     metadata: {
       source_id: "predikta_use_cases",
       source: "predikta_use_cases",
@@ -375,7 +375,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_use_cases_incentives",
-    text: "The use case sheet also frames Predikta as useful for incentive optimization, testing whether different frames like exclusive access, savings, scarcity, or status trigger stronger persuasion for different segments.",
+    text: "Predikta can help with incentive optimization by testing whether different frames like exclusive access, savings, scarcity, or status trigger stronger persuasion for different segments.",
     metadata: {
       source_id: "predikta_use_cases",
       source: "predikta_use_cases",
@@ -430,7 +430,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_problem",
-    text: "The investor narrative says brands launch blind because traditional market research takes three to four weeks, costs roughly one hundred thousand to one hundred twenty thousand pesos per study, and often arrives too late to improve the campaign that needed the insight.",
+    text: "Brands often launch blind because traditional market research takes three to four weeks, costs roughly one hundred thousand to one hundred twenty thousand pesos per study, and often arrives too late to improve the campaign that needed the insight.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -441,7 +441,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_product",
-    text: "The investor page describes the workflow as taking a campaign brief or message, selecting a Filipino psychographic segment, running behavioral simulation across a large modeled population, and returning predicted sentiment plus directional recommendations in hours.",
+    text: "The workflow takes a campaign brief or message, selects a Filipino psychographic segment, runs behavioral simulation across a large modeled population, and returns predicted sentiment plus directional recommendations in hours.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -452,7 +452,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_validation",
-    text: "The investor material separates lab validation from commercial validation. It cites published results around trait alignment and survey-style sentiment accuracy, while saying the next major proof point is whether simulation outputs consistently predict real-world campaign outcomes at commercial scale.",
+    text: "Predikta separates lab validation from commercial validation. Published results support trait alignment and survey-style sentiment accuracy, while the next major proof point is whether simulation outputs consistently predict real-world campaign outcomes at commercial scale.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -463,7 +463,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_soft_launch",
-    text: "The investor site says Predikta entered a controlled soft launch in late February 2026, using that phase to test the product, refine workflows, and gather early customer validation before full go-to-market.",
+    text: "Predikta entered a controlled soft launch in late February 2026, using that phase to test the product, refine workflows, and gather early customer validation before full go-to-market.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -474,7 +474,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_traction",
-    text: "The investor page reports around seventy thousand pesos in monthly recurring revenue during soft launch, three paying clients, five active enterprise pilots, and more than thirty product testers before full commercial launch.",
+    text: "Predikta reached around seventy thousand pesos in monthly recurring revenue during soft launch, with three paying clients, five active enterprise pilots, and more than thirty product testers before full commercial launch.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -507,7 +507,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_use_of_funds",
-    text: "The investor site says the round is meant to fund full commercial launch, with allocation across sales and customer success, product and engineering, dataset enrichment, and validation plus operations.",
+    text: "The round is meant to fund full commercial launch, with allocation across sales and customer success, product and engineering, dataset enrichment, and validation plus operations.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
@@ -529,7 +529,7 @@ export const SEED_KNOWLEDGE = [
   },
   {
     id: "predikta_investor_conditions",
-    text: "The investor page is clear that three things still need to be proven: simulations must predict real campaign outcomes, customers must use Predikta repeatedly, and localized Filipino models must outperform generic AI approaches in practice.",
+    text: "Three things still need to be proven: simulations must predict real campaign outcomes, customers must use Predikta repeatedly, and localized Filipino models must outperform generic AI approaches in practice.",
     metadata: {
       source_id: "predikta_investor_site",
       source: "predikta_investor_site",
