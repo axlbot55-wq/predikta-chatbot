@@ -4,7 +4,6 @@ const STARTERS = [
   "What exactly does Predikta help teams understand?",
   "How is Predikta different from surveys, social listening, or ChatGPT?",
   "What kinds of campaigns or decisions is Predikta most useful for?",
-  "What should an investor know about Predikta's traction and raise?",
 ];
 
 const HISTORY_KEY = "predikta_chat_history_v2";
