@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const STARTERS = [
-  "What kinds of questions can Predikta help a marketing team answer?",
-  "How is Predikta different from surveys or social listening?",
-  "We have two campaign directions. How would Predikta help us choose?",
+  "What exactly does Predikta help teams understand?",
+  "How is Predikta different from surveys, social listening, or ChatGPT?",
+  "What kinds of campaigns or decisions is Predikta most useful for?",
+  "What should an investor know about Predikta's traction and raise?",
 ];
 
 const HISTORY_KEY = "predikta_chat_history_v2";
@@ -58,7 +59,7 @@ export default function ChatWidget({ apiBase }) {
       {
         id: "intro",
         role: "assistant",
-        text: "Hi. I can help you think through messaging, audiences, likely reactions, and what Predikta can actually do.",
+        text: "Hi. I can help you understand what Predikta does, how it works, and what potential customers or investors usually want to know.",
       },
     ];
   });
@@ -196,7 +197,7 @@ export default function ChatWidget({ apiBase }) {
       {
         id: "intro",
         role: "assistant",
-        text: "Fresh start. Tell me what you're trying to understand, compare, or decide.",
+        text: "Fresh start. Ask anything you want to understand about Predikta, whether you're exploring it as a customer or an investor.",
       },
     ]);
   }
@@ -211,8 +212,8 @@ export default function ChatWidget({ apiBase }) {
         <section className={`chat-panel ${isOpen ? "chat-panel--open" : ""}`} aria-live="polite">
           <header className="chat-header">
             <div>
-              <p className="chat-kicker">Predikta guide</p>
-              <h2>Let’s think it through.</h2>
+              <p className="chat-kicker">Predikta chat</p>
+              <h2>Learn more about Predikta.</h2>
             </div>
             <div className="chat-actions">
               <button className="chat-action-link" type="button" onClick={resetConversation}>
@@ -266,7 +267,7 @@ export default function ChatWidget({ apiBase }) {
               rows={3}
               onChange={(event) => setInput(event.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask about audience reactions, messaging choices, or what Predikta can help with."
+              placeholder="Ask what Predikta does, how it works, or where it fits."
             />
             <div className="chat-composer-bar">
               <p>{isSending ? "Replying..." : "Enter to send, Shift+Enter for a new line"}</p>

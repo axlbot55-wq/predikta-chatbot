@@ -11,12 +11,12 @@ export default function App() {
   return (
     <main className="app-shell">
       <section className="hero-copy">
-        <p className="eyebrow">Predikta conversational guide</p>
-        <h1>Talk through audiences, reactions, and messaging without the robotic chatbot feel.</h1>
+        <p className="eyebrow">Meet Predikta</p>
+        <h1>Ask what Predikta does, how it works, and whether it fits your team.</h1>
         <p className="hero-text">
-          This version is designed to feel more like a sharp human operator: warm, concise, and
-          genuinely useful when someone is thinking through people, sentiment, positioning, or what
-          to do next.
+          This chat is built for potential customers who want a clear feel for Predikta. Use it to
+          explore the product, understand the kinds of questions it can help answer, and see where
+          it fits in your workflow.
         </p>
       </section>
       <ChatWidget apiBase={apiBase} />

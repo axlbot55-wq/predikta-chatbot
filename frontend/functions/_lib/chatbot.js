@@ -41,6 +41,20 @@ function queryHints(text) {
   if (/(security|privacy|encrypt|data)/.test(lowered)) hints.add("security");
   if (/(industry|example|oppo|asialink|ipeople|school|finance)/.test(lowered))
     hints.add("industry_examples");
+  if (/(invest|investor|funding|fundraising|raise|round|safe|valuation|cap|term sheet|917ventures|globe)/.test(lowered))
+    hints.add("investor_raise");
+  if (/(traction|revenue|mrr|paying clients|pilots|pipeline|soft launch|gtm)/.test(lowered))
+    hints.add("investor_traction");
+  if (/(moat|defensib|copy|advantage|why now|why this wins|barrier)/.test(lowered))
+    hints.add("investor_moat");
+  if (/(team|founder|founders|ceo|cto|cso|axel|jason|advisor)/.test(lowered))
+    hints.add("investor_team");
+  if (/(validate|validation|accuracy|proof|study|arxiv|peer reviewed|peer-reviewed)/.test(lowered))
+    hints.add("investor_validation");
+  if (/(roadmap|milestone|series a|18 months|next raise)/.test(lowered))
+    hints.add("investor_roadmap");
+  if (/(opportunity|thesis|market|southeast asia|sea|philippines)/.test(lowered))
+    hints.add("investor_overview");
 
   return hints;
 }
@@ -95,6 +109,9 @@ export function semanticSearch(text, topK = 6, channel = "web") {
     if (hints.has("use_cases") && item.metadata.topic === "campaign_stages") {
       score += 0.15;
     }
+    if (item.metadata.topic.startsWith("investor_") && [...hints].some((hint) => hint.startsWith("investor_"))) {
+      score += 0.35;
+    }
 
     hits.push({
       id: item.id,
@@ -128,8 +145,8 @@ function isHandoffQuestion(text) {
 export function buildAnswer(userText, hits, channel = "web") {
   if (!hits.length) {
     return channel === "whatsapp"
-      ? "I can help with Predikta's positioning, use cases, and campaign-testing capabilities. Could you rephrase that or ask about overview, use cases, or audience simulation?"
-      : "I can help with Predikta's positioning, use cases, and campaign-testing capabilities. Could you rephrase the question or ask about overview, use cases, or audience simulation?";
+      ? "I can help with Predikta's product, use cases, and investor-facing basics like traction, validation, and the raise. Could you rephrase that or ask a narrower question?"
+      : "I can help with Predikta's product, use cases, and investor-facing basics like traction, validation, team, and the raise. Could you rephrase the question or ask a narrower one?";
   }
 
   const snippets = [];
