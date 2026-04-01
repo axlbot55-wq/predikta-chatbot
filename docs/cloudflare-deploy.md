@@ -39,6 +39,8 @@ The current Cloudflare chatbot logic uses the seeded Predikta knowledge base. If
 
 The website chat UI can also use OpenAI securely through the server-side Pages Functions. See `docs/openai-chatbot-setup.md`.
 
+The current no-API knowledge path is documented in `docs/no-api-rag.md`.
+
 ## Environment Variables
 
 If you want the OpenClaw webhook to send replies back through the vendor API, set these in Cloudflare Pages:

@@ -18,6 +18,33 @@ export function tokenize(text) {
   return new Set((text.toLowerCase().match(/[a-z0-9]+/g) || []));
 }
 
+function bigrams(text) {
+  const tokens = (text.toLowerCase().match(/[a-z0-9]+/g) || []);
+  const grams = [];
+  for (let index = 0; index < tokens.length - 1; index += 1) {
+    grams.push(`${tokens[index]} ${tokens[index + 1]}`);
+  }
+  return grams;
+}
+
+function queryHints(text) {
+  const lowered = text.toLowerCase();
+  const hints = new Set();
+
+  if (/(what is|who is|overview|explain predikta)/.test(lowered)) hints.add("overview");
+  if (/(different|difference|compare|vs|versus|social listening|survey|chatgpt)/.test(lowered))
+    hints.add("comparison");
+  if (/(use case|use cases|help with|can do|what can|before launch|campaign)/.test(lowered))
+    hints.add("use_cases");
+  if (/(persona|personas|audience|segment|segmentation)/.test(lowered)) hints.add("personas");
+  if (/(accur|probabil|method|signal|simulate)/.test(lowered)) hints.add("methodology");
+  if (/(security|privacy|encrypt|data)/.test(lowered)) hints.add("security");
+  if (/(industry|example|oppo|asialink|ipeople|school|finance)/.test(lowered))
+    hints.add("industry_examples");
+
+  return hints;
+}
+
 function splitSentences(text) {
   return text
     .split(/(?<=[.!?])\s+/)
@@ -34,6 +61,8 @@ function allowedVisibilities(channel) {
 
 export function semanticSearch(text, topK = 6, channel = "web") {
   const queryTokens = tokenize(text);
+  const queryBigrams = new Set(bigrams(text));
+  const hints = queryHints(text);
   const allowed = allowedVisibilities(channel);
   const hits = [];
 
@@ -49,8 +78,22 @@ export function semanticSearch(text, topK = 6, channel = "web") {
     }
 
     let score = overlap / Math.max(queryTokens.size, 1);
+    const bodyBigrams = new Set(bigrams(item.text));
+    const bigramOverlap = [...queryBigrams].filter((gram) => bodyBigrams.has(gram)).length;
+    score += bigramOverlap * 0.25;
+
     if (item.text.toLowerCase().includes(text.toLowerCase())) {
       score += 0.5;
+    }
+
+    if (hints.has(item.metadata.topic)) {
+      score += 0.35;
+    }
+    if (hints.has("comparison") && item.metadata.topic === "faq") {
+      score += 0.15;
+    }
+    if (hints.has("use_cases") && item.metadata.topic === "campaign_stages") {
+      score += 0.15;
     }
 
     hits.push({
@@ -93,14 +136,14 @@ export function buildAnswer(userText, hits, channel = "web") {
   const seen = new Set();
 
   for (const hit of hits.slice(0, 3)) {
-    const sourceId = hit.metadata.source_id || hit.metadata.source || hit.id;
-    if (seen.has(sourceId)) {
-      continue;
-    }
     const firstSentence = splitSentences(hit.text)[0];
     if (firstSentence) {
+      const normalized = firstSentence.toLowerCase();
+      if (seen.has(normalized)) {
+        continue;
+      }
       snippets.push(firstSentence);
-      seen.add(sourceId);
+      seen.add(normalized);
     }
   }
 
